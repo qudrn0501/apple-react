@@ -7,7 +7,7 @@ function App() {
   let [따봉, 따봉변경] = useState(0);
 
 
-  // 숙제: 버튼 누르면 첫 글이 '여자코트 추천'으로 바뀌는 기능
+  // 숙제: 버튼 누르면 글제목 가나다순 정렬 기능 만들기
   return (
     <div className='App'>
       <div className='black-nav'>
@@ -16,11 +16,7 @@ function App() {
       <div className='list'>
         <h4>{글제목[0]} <span onClick={()=>{따봉변경(따봉 + 1)}}>👍</span> {따봉} </h4>
         <p>2월 17일 발행</p> 
-        <button onClick={()=>{
-          let copy = [...글제목];
-          copy[0] = '여자 코트 추천';
-          글제목변경(copy);
-        }}>제목 변경</button>
+        
       </div>
       <div className='list'>
         <h4>{글제목[1]}</h4>
@@ -30,6 +26,16 @@ function App() {
         <h4>{글제목[2]}</h4>
         <p>2월 17일 발행</p>
       </div>
+      <button onClick={()=>{
+          let copy = [...글제목];
+          copy[0] = '여자 코트 추천';
+          글제목변경(copy);
+      }}>제목 변경</button>
+      <button onClick={()=>{
+          let array = [...글제목];
+          array = array.sort();
+          글제목변경(array);
+      }}>가나다순 정렬</button>
     </div>
   );
 }
