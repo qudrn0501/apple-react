@@ -6,6 +6,7 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동맛집', '파이썬독학']);
   let [따봉, 따봉변경] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
+  let [title, setTitle] = useState(0);
 
 
   // 숙제: 글수정 버튼누르면 첫 글제목이 '여자코트 추천'으로 바뀌어야함
@@ -44,7 +45,7 @@ function App() {
         글제목.map(function(a, i){
           return (
             <div className='list' key={i}>
-              <h4 onClick={()=>{setModal(!modal)}}>{글제목[i]} 
+              <h4 onClick={()=>{setModal(!modal); setTitle(i)}}>{글제목[i]} 
                 <span onClick={()=>{
                   let copy따봉 = [...따봉];
                   copy따봉[i] = copy따봉[i] + 1;
@@ -57,8 +58,12 @@ function App() {
         })
       }
 
+      <button onClick={()=>{setTitle(0)}}>글제목0</button>
+      <button onClick={()=>{setTitle(1)}}>글제목1</button>
+      <button onClick={()=>{setTitle(2)}}>글제목2</button>
+
       {
-        modal === true ? <Modal color={'orange'} 글제목 = {글제목} 글제목변경 = {글제목변경}/> : null
+        modal === true ? <Modal title = {title} color={'orange'} 글제목 = {글제목} 글제목변경 = {글제목변경}/> : null
       }
     </div>
   );
@@ -67,7 +72,7 @@ function App() {
 function Modal(props){
   return (
     <div className='modal' style={{background : props.color}}>
-      <h4>{props.글제목[0]}</h4>
+      <h4>{props.글제목[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
 
